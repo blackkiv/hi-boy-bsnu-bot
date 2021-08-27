@@ -1,0 +1,5 @@
+# pycache folder
+__pycache__
+
+# properties with telegram bot token
+properties.py
