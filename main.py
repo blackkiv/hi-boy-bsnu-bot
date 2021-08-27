@@ -16,6 +16,10 @@ async def welcome(message: types.Message):
 @dp.message_handler(content_types=["new_chat_members"])
 async def chat_member(message: types.Message):
     new_member_username = message.new_chat_members[0].username
+    if message.new_chat_members[0].is_bot:
+        logging.log(logging.INFO, msg=f"bot added to group")
+        return
+
     chat_id = message.chat.id
     text = f"👀✨ привет, @{new_member_username}..\nкакой курс, специальность, группа?\nизучал(а) программирование или онли школьные знания? (относится к первашам)"
     logging.log(logging.INFO, msg=f"new chat user: {new_member_username}")
