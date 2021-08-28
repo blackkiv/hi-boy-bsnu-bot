@@ -1,5 +1,5 @@
 # pycache folder
 __pycache__
 
-# properties with telegram bot token
-properties.py
+# environment variables with telegram bot token
+.env
