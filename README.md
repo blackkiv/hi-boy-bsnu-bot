@@ -1,5 +1,7 @@
 # hi-boy-bsnu-bot
 
+the bot mentions new participants and asks them a set of standard questions
+
 ## how-to run
 
 1. clone git repository  
