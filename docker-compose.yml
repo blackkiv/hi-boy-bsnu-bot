@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  web:
+  bot:
     build: .
     environment:
       - BOT_TOKEN={PLACE_FOR_TOKEN}
