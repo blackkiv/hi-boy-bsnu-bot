@@ -4,3 +4,6 @@ services:
     build: .
     environment:
       - BOT_TOKEN={PLACE_FOR_TOKEN}
+    deploy:
+      restart_policy: 
+        condition: any
