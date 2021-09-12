@@ -1,9 +1,25 @@
 version: "3.9"
 services:
+  elasticsearch:
+    image: elasticsearch:7.14.1
+    container_name: elasticsearch
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    deploy:
+      restart_policy:
+        condition: any
+
   bot:
     build: .
+    container_name: hi-boy-bsnu-bot
     environment:
       - BOT_TOKEN={PLACE_FOR_TOKEN}
+      - ELASTICSEARCH_HOST=elasticsearch
+    depends_on:
+      - elasticsearch
     deploy:
-      restart_policy: 
+      restart_policy:
         condition: any
