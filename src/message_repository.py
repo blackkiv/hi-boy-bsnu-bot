@@ -10,6 +10,7 @@ class MessageRepository(object):
         mongo = client["msg"]["messages"]
 
     async def save(self, chat_id: str, message: str):
+        await self.delete(chat_id)
         document = {"chat_id": chat_id, "message": message}
         await mongo.insert_one(document)
 
