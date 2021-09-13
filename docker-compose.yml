@@ -14,5 +14,6 @@ services:
     environment:
       - BOT_TOKEN={PLACE_FOR_TOKEN}
       - MONGODB_HOST=mongo
+      - MONGODB_PORT=27017
     depends_on:
       - mongo
