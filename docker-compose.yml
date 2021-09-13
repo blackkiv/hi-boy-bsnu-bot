@@ -5,5 +5,5 @@ services:
     restart: always
     container_name: hi-boy-bsnu-bot
     environment:
-      - BOT_TOKEN=
-      - MONGODB_ATLAS_URL=
+      - BOT_TOKEN=${BOT_TOKEN}
+      - MONGODB_ATLAS_URL=${MONGODB_ATLAS_URL}
