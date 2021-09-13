@@ -57,6 +57,13 @@ async def show_message(message: types.Message):
 async def delete_message(message: types.Message):
     chat_id = message.chat.id
 
+    sender = await bot.get_chat_member(chat_id, message.from_user.id)
+
+    is_admin = sender.is_chat_admin() or sender.is_chat_creator()
+    if not is_admin:
+        await message.reply("only admin users can do this")
+        return
+
     await repository.delete(chat_id)
 
     logging.log(logging.INFO, msg=f"message deleted for chat: {chat_id}")
