@@ -23,7 +23,7 @@ async def set_message(message: types.Message):
 
     sender = await bot.get_chat_member(chat_id, message.from_user.id)
 
-    is_admin = sender.is_chat_admin() or sender.is_chat_creator
+    is_admin = sender.is_chat_admin() or sender.is_chat_creator()
     if not is_admin:
         await message.reply("only admin users can do this")
         return
