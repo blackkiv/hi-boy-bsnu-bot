@@ -1,19 +1,9 @@
 version: "3.9"
 services:
-  mongo:
-    image: mongo
-    restart: always
-    container_name: mongo
-    ports:
-      - "27017:27017"
-
   bot:
     build: .
     restart: always
     container_name: hi-boy-bsnu-bot
     environment:
-      - BOT_TOKEN={PLACE_FOR_TOKEN}
-      - MONGODB_HOST=mongo
-      - MONGODB_PORT=27017
-    depends_on:
-      - mongo
+      - BOT_TOKEN=
+      - MONGODB_ATLAS_URL=

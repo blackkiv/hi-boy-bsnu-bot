@@ -1,11 +1,11 @@
 from motor import motor_asyncio
-from properties import MONGODB_HOST,MONGODB_PORT
+from properties import MONGODB_ATLAS_URL
 
 
 class MessageRepository(object):
     def __init__(self):
         global mongo
-        client = motor_asyncio.AsyncIOMotorClient(MONGODB_HOST, MONGODB_PORT)
+        client = motor_asyncio.AsyncIOMotorClient(MONGODB_ATLAS_URL)
         print(client.server_info())
         mongo = client["msg"]["messages"]
 
