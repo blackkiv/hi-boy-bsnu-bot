@@ -96,11 +96,13 @@ async def chat_member(message: types.Message):
 
 @dp.message_handler(content_types=ContentType.TEXT)
 async def handle_kirill_message(message: types.Message):
+    chat_id = message.chat.id
     sender_id = message.from_user.id
-    msg_text = message.text
+    msg_text = message.text.lower()
     if sender_id != KIRILL_ID and msg_text != EXPECTED_KIRILL_MESSAGE:
         return
     else:
+        logging.log(logging.INFO, msg=f"kirill start new relationship with me in chat: {chat_id}")
         await message.answer(ANSWER_FOR_KIRILL)
 
 
