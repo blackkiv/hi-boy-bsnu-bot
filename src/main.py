@@ -1,5 +1,5 @@
-from aiogram.types.message import ParseMode
-from properties import BOT_TOKEN, DEFAULT_MESSAGE
+from aiogram.types.message import ContentType, ParseMode
+from properties import ANSWER_FOR_KIRILL, BOT_TOKEN, DEFAULT_MESSAGE, EXPECTED_KIRILL_MESSAGE, KIRILL_ID
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 from message_repository import MessageRepository
@@ -92,6 +92,16 @@ async def chat_member(message: types.Message):
 
     logging.log(logging.INFO, msg=f"new chat user: {new_member_username}")
     await bot.send_message(chat_id, welcome_message, parse_mode=ParseMode.HTML)
+
+
+@dp.message_handler(content_types=ContentType.TEXT)
+async def handle_kirill_message(message: types.Message):
+    sender_id = message.from_user.id
+    msg_text = message.text
+    if sender_id != KIRILL_ID and msg_text != EXPECTED_KIRILL_MESSAGE:
+        return
+    else:
+        await message.answer(ANSWER_FOR_KIRILL)
 
 
 if __name__ == "__main__":
