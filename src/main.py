@@ -103,7 +103,7 @@ async def handle_kirill_message(message: types.Message):
         return
     else:
         logging.log(logging.INFO, msg=f"kirill start new relationship with me in chat: {chat_id}")
-        await message.answer(ANSWER_FOR_KIRILL)
+        await bot.send_message(chat_id, text=ANSWER_FOR_KIRILL)
 
 
 if __name__ == "__main__":
