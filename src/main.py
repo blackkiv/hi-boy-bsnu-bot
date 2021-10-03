@@ -20,7 +20,7 @@ async def welcome(message: types.Message):
 @dp.message_handler(commands=["help"])
 async def help(message: types.Message):
     msg = """
-    hi, for set welcome message you should use command \'set_message\' with providing of a welcome message with mention. \nExample: Hello, {MENTION}.
+    hi, you need to use the \'set_message\' command to set the welcome message, providing a welcome message with a mention.  \nExample: Hello, {MENTION}.
     """
 
     await message.reply(msg)
