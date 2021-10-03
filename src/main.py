@@ -17,6 +17,15 @@ async def welcome(message: types.Message):
     await message.reply("я кароч слежу за тем, кто зашел..")
 
 
+@dp.message_handler(commands=["help"])
+async def help(message: types.Message):
+    msg = """
+    hi, for set welcome message you should use command \'set_message\' with providing of a welcome message with mention. \nExample: Hello, {MENTION}.
+    """
+
+    await message.reply(msg)
+
+
 @dp.message_handler(commands=["set_message"])
 async def set_message(message: types.Message):
     chat_id = message.chat.id
