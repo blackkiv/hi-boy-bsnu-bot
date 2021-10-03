@@ -86,24 +86,15 @@ async def chat_member(message: types.Message):
     else:
         member_mention = new_member.mention
 
-    welcome_message = await repository.get(chat_id)
+    try:
+        welcome_message = await repository.get(chat_id)
+    except:
+        welcome_message = DEFAULT_MESSAGE
 
     welcome_message = await create_message(member_mention, welcome_message)
 
     logging.log(logging.INFO, msg=f"new chat user: {new_member_username}")
     await bot.send_message(chat_id, welcome_message, parse_mode=ParseMode.HTML)
-
-
-@dp.message_handler(content_types=ContentType.TEXT)
-async def handle_kirill_message(message: types.Message):
-    chat_id = message.chat.id
-    sender_id = message.from_user.id
-    msg_text = message.text.lower()
-    if sender_id != KIRILL_ID and msg_text != EXPECTED_KIRILL_MESSAGE:
-        return
-    else:
-        logging.log(logging.INFO, msg=f"kirill start new relationship with me in chat: {chat_id}")
-        await bot.send_message(chat_id, text=ANSWER_FOR_KIRILL)
 
 
 if __name__ == "__main__":
