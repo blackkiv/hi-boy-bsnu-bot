@@ -1,5 +1,5 @@
-from aiogram.types.message import ContentType, ParseMode
-from properties import ANSWER_FOR_KIRILL, BOT_TOKEN, DEFAULT_MESSAGE, EXPECTED_KIRILL_MESSAGE, KIRILL_ID
+from aiogram.types.message import ParseMode
+from properties import BOT_TOKEN, DEFAULT_MESSAGE
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 from message_repository import MessageRepository
