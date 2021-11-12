@@ -1,5 +1,6 @@
-from aiogram.types.message import ParseMode
-from properties import BOT_TOKEN, DEFAULT_MESSAGE
+from aiogram.types import chat
+from aiogram.types.message import ContentType, ParseMode
+from properties import BOT_TOKEN, DEFAULT_MESSAGE, TARGET_ID
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 from message_repository import MessageRepository
@@ -104,6 +105,29 @@ async def chat_member(message: types.Message):
 
     logging.log(logging.INFO, msg=f"new chat user: {new_member_username}")
     await bot.send_message(chat_id, welcome_message, parse_mode=ParseMode.HTML)
+
+
+@dp.message_handler(content_types=ContentType.TEXT)
+async def text_handler(message: types.Message):
+    print(message.from_user.id)
+    print(TARGET_ID)
+    print(type(TARGET_ID))
+    print(message.from_user.id)
+    print(type(message.from_user.id))
+    logging.log(
+        logging.INFO,
+        msg=f"t: {TARGET_ID}; s: {message.from_user.id}; tt: {type(TARGET_ID)}; ts: {type(message.from_user.id)}",
+    )
+    is_target = message.from_user.id == TARGET_ID
+    if not is_target:
+        return
+
+    chat_id = message.chat.id
+    text = message.text
+    date = message.date
+
+    await repository.save_spy(chat_id, text, date)
+    logging.log(logging.INFO, msg=f"msg from target. chat: {chat_id}. date: {date}")
 
 
 if __name__ == "__main__":
